@@ -9,22 +9,31 @@
     <link rel="stylesheet" href="travel.css">
 </head>
 <body>
+<?php
+    $con=mysqli_connect('localhost','root','','trip');
+    if(isset($_POST['sb']) )
+    {
+        $name=$_POST['Name'];
+        $email=$_POST['Email'];
+        $gender=$_POST['Gender'];
+        $phone=$_POST['Phone'];
+        $query="INSERT INTO `trip` (`Name`, `Email`, `Gender`, `Phone`) VALUES 
+        ('$name','$email','$gender','$phone')";
+        $run=mysqli_query($con,$query);
+
+    }
+    ?>
     <div class="container">
         <h1>Welcome to MOLISS</h1>
         <p>Enter Your information and submiit form to conform your partication in trip</p>
-        <form action="trip.php" method="post">
+        <form method="post">
             <input type="text" name="Name" id="name" placeholder="Enter Your name">
             <input type="text" name="Email" id="Email" placeholder="Enter Your Email ">
             <input type="text" name="Gender" id="Gender" placeholder="Enter Your Gender ">
             <input type="text" name="Phone" id="Phone" placeholder="Enter Your Phone">
-            <textarea name="Description" id="Description" cols="30" rows="10" placeholder="Enter Your Description">
-            </textarea>
-            <button class="btn">Submit</button>
-            <button class="btn">Reset</button>
+            <button type="button" name='sb'>submit</button>
         </form>
     </div>
-    <script src="travel.js">
-        // 
-    </script>
+ 
 </body>
 </html>
